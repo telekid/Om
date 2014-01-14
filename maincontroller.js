@@ -1,65 +1,36 @@
-app.controller("MainController", function($scope){
-	$scope.items = [
-    {
-      id: 1,
-      addendum: 1,
-      to_submit: true,
-      submitted: "12-jan",
-      action: "add",
-      category: "Microphones",
-      make: "DPA",
-      model: "4061 IMK",
-      name: "loose",
-      note: "Something important",
-      bid_note: "Black",
-      purpose: "Violins"
-    },
-    {
-      id: 2,
-      addendum: 1,
-      to_submit: true,
-      submitted: "12-jan",
-      action: "add",
-      category: "Microphones",
-      make: "DPA",
-      model: "4061 IMK",
-      name: "loose",
-      note: "Something important",
-      bid_note: "Black",
-      purpose: "Violins"
-    },
-    {
-      id: 3,
-      addendum: 1,
-      to_submit: false,
-      submitted: "12-jan",
-      action: "add",
-      category: "Microphones",
-      make: "Shure",
-      model: "565-SD",
-      name: "loose",
-      note: "",
-      bid_note: "",
-      purpose: ""
-    }
-	];
-  $scope.newItem = null;
-  $scope.addNewItem = function() {
-      if ($scope.newItem != null && $scope.newItem != "") {
-          $scope.items.push({
-              id: $scope.items.length,
-              addendum: 1,
-              to_submit: false,
-              submitted: "",
-              action: "",
-              category: "",
-              make: "",
-              model: "",
-              name: $scope.newItem,
-              note: "",
-              bid_note: "",
-              purpose: ""
-          });
+app.controller('MainController', ['$scope', '$log', 'listener', 'pouchWrapper', function($scope, $log, listener, pouchWrapper) {
+
+  $scope.$log = $log;
+
+  $scope.submit = function() {
+    pouchWrapper.add($scope.text).then(function(res) {
+      $scope.text = '';
+    }, function(reason) {
+      console.log(reason);
+    })
+  };
+
+  $scope.remove = function(id) {
+    pouchWrapper.remove(id).then(function(res) {
+    }, function(reason) {
+      console.log(reason);
+    })
+  };
+
+	$scope.items = [];
+
+  $scope.$on('newItem', function(event, item) {
+    $scope.items.push(item);
+
+  });
+
+  $scope.$on('delItem', function(event, id) {
+    for (var i = 0; i<$scope.items.length; i++) {
+      if ($scope.items[i]._id === id) {
+        $scope.items.splice(i,1);
       }
-  }
-});
+    }
+  });
+
+}]);
+

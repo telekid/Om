@@ -8,38 +8,15 @@
 </head>
 <body>
     <div id="content" ng-app='MyTutorialApp' ng-controller='MainController'>
-        <input type='text' ng-model='searchText' />
-            <table>
-                <th>
-                    <td>Addendum</td>
-                    <td>To Submit</td>
-                    <td>Submitted</td>
-                    <td>Action</td>
-                    <td>Category</td>
-                    <td>Make</td>
-                    <td>Model</td>
-                    <td>Name</td>
-                    <td>Note</td>
-                    <td>bid Note</td>
-                    <td>Purpose</td>
-                <tr ng-repeat='item in items | filter:searchText' ng-hide='item.to_submit == true'>
-                    <td>{{item.name}}</td>
-                    <td>{{item.id}}</td>
-                    <td>{{item.addendum}}</td>
-                    <td>{{item.to_submit}}</td>
-                    <td>{{item.submitted}}</td>
-                    <td>{{item.action}}</td>
-                    <td>{{item.category}}</td>
-                    <td>{{item.make}}</td>
-                    <td>{{item.model}}</td>
-                    <td>{{item.name}}</td>
-                    <td>{{item.note}}</td>
-                    <td>{{item.bid_note}}</td>
-                    <td>{{item.purpose}}</td>
-                </tr>
-            </table>
-        <input type='text' ng-model='newItem' />
-        <button ng-click='addNewItem()'>Add Item</button>
+        <ul>
+            <li ng-repeat="item in items">
+                {{item.text}}
+                <button ng-click="remove(item._id)">Delete</button>
+            </li>
+        </ul>
+        <input type='text' ng-model='text' />
+        <button ng-click="submit()">Add Item</button>
+        {{item}}
     </div>
 </body>
 </html>
