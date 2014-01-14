@@ -3,8 +3,9 @@ app.controller('MainController', ['$scope', '$log', 'listener', 'pouchWrapper', 
   $scope.$log = $log;
 
   $scope.submit = function() {
-    pouchWrapper.add($scope.text).then(function(res) {
-      $scope.text = '';
+    pouchWrapper.add($scope.newItem).then(function(res) {
+      $scope.newItem.action = '';
+      $scope.newItem.quantity = '';
     }, function(reason) {
       console.log(reason);
     })
