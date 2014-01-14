@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+    <title>Learning AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js" type="text/javascript"></script>
+    <script src="http://download.pouchdb.com/pouchdb-nightly.js"></script>
+    <script src="app.js" type="text/javascript"></script>
+    <script src="maincontroller.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="content" ng-app='MyTutorialApp' ng-controller='MainController'>
+        <input type='text' ng-model='searchText' />
+            <table>
+                <th>
+                    <td>Addendum</td>
+                    <td>To Submit</td>
+                    <td>Submitted</td>
+                    <td>Action</td>
+                    <td>Category</td>
+                    <td>Make</td>
+                    <td>Model</td>
+                    <td>Name</td>
+                    <td>Note</td>
+                    <td>bid Note</td>
+                    <td>Purpose</td>
+                <tr ng-repeat='item in items | filter:searchText' ng-hide='item.to_submit == true'>
+                    <td>{{item.name}}</td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.addendum}}</td>
+                    <td>{{item.to_submit}}</td>
+                    <td>{{item.submitted}}</td>
+                    <td>{{item.action}}</td>
+                    <td>{{item.category}}</td>
+                    <td>{{item.make}}</td>
+                    <td>{{item.model}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.note}}</td>
+                    <td>{{item.bid_note}}</td>
+                    <td>{{item.purpose}}</td>
+                </tr>
+            </table>
+        <input type='text' ng-model='newItem' />
+        <button ng-click='addNewItem()'>Add Item</button>
+    </div>
+</body>
+</html>
