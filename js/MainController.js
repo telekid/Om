@@ -2,8 +2,11 @@ app.controller('MainController', ['$scope', '$log', 'listener', 'pouchWrapper', 
 
   $scope.$log = $log;
 
+	$scope.items = [];
+
   $scope.submit = function() {
     pouchWrapper.add($scope.newItem).then(function(res) {
+      // Clear item fields
       $scope.newItem.action = '';
       $scope.newItem.quantity = '';
     }, function(reason) {
@@ -18,7 +21,6 @@ app.controller('MainController', ['$scope', '$log', 'listener', 'pouchWrapper', 
     })
   };
 
-	$scope.items = [];
 
   $scope.$on('newItem', function(event, item) {
     $scope.items.push(item);
