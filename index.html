@@ -4,24 +4,24 @@
     <script src="js/angular.js" type="text/javascript"></script>
     <script src="js/pouchdb-nightly.js"></script>
     <script src="js/app.js" type="text/javascript"></script>
-    <script src="js/MainController.js" type="text/javascript"></script>
+    <script src="js/ItemController.js" type="text/javascript"></script>
 </head>
 <body style="font-size: 2em;">
-    <div id="content" ng-app='MyTutorialApp' ng-controller='MainController'>
+    <div id="content" ng-app='MyTutorialApp' ng-controller='ItemController'>
         <table>
             <thead>
-                <td>Action</td>
-                <td>Quantity</td>
+                <td>Make</td>
+                <td>Model</td>
             </thead>
             <tfoot>
-                    <td><input type='text' ng-model='newItem.action'/></td>
-                    <td><input type='text' ng-model='newItem.quantity'/></td>
+                    <td><input type='text' ng-model='newItem.make'/></td>
+                    <td><input type='text' ng-model='newItem.model'/></td>
                     <td><button ng-click="submit()">Add Item</button></td>
             </tfoot>
 
             <tr ng-repeat="item in items">
-                <td>{{item.action}}</td>
-                <td>{{item.quantity}}</td>
+                <td>{{item.make}}</td>
+                <td>{{item.model}}</td>
                 <td><button ng-click="remove(item._id)">Delete</button></td>
             </tr>
         </table>

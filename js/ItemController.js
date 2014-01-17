@@ -1,14 +1,20 @@
-app.controller('MainController', ['$scope', '$log', 'listener', 'pouchWrapper', function($scope, $log, listener, pouchWrapper) {
+app.controller('ItemController', ['$scope', '$log', 'listener', 'pouchWrapper', function($scope, $log, listener, pouchWrapper) {
 
   $scope.$log = $log;
 
 	$scope.items = [];
 
   $scope.submit = function() {
-    pouchWrapper.add($scope.newItem).then(function(res) {
-      // Clear item fields
-      $scope.newItem.action = '';
-      $scope.newItem.quantity = '';
+    var newItem = {
+      type: 'item',
+      make: $scope.newItem.make,
+      model: $scope.newItem.model,
+    };
+    
+    pouchWrapper.add(newItem).then(function(res) {
+      // Clear newitems
+      $scope.newItem.make = '';
+      $scope.newItem.model = '';
     }, function(reason) {
       console.log(reason);
     })

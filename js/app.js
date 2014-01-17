@@ -12,13 +12,9 @@ app.factory('myPouch', [function() {
 app.factory('pouchWrapper', ['$q', '$rootScope', 'myPouch', function($q, $rootScope, myPouch) {
 
   return {
-    add: function(newItem) {
+    add: function(doc) {
       var deferred = $q.defer();
-      var doc = {
-        type: 'item',
-        action: newItem.action,
-        quantity: newItem.quantity
-      };
+
       myPouch.post(doc, function(err, res) {
         $rootScope.$apply(function() {
           if (err) {
