@@ -7,8 +7,9 @@
     <script src="js/ItemController.js" type="text/javascript"></script>
     <script src="js/BidItemController.js" type="text/javascript"></script>
 </head>
-<body style="font-size: 2em;" ng-app='MyTutorialApp'>
-    <div id="content" ng-controller='ItemController'>
+<body ng-app='MyTutorialApp'>
+    <div id="items" ng-controller='ItemController'>
+        <h1>Items</h1>
         <table>
             <thead>
                 <td>Make</td>
@@ -28,28 +29,25 @@
         </table>
     </div>
     <div id='bidItems' ng-app='MyTutorialApp' ng-controller='BidItemController'>
+        <h1>Bid Items</h1>
         <table>
             <thead>
                 <td>Item List</td>
-                <td>Item</td>
                 <td>Notes</td>
                 <td>Quantity</td>
                 <td>Source</td>
             </thead>
             <tfoot>
                 <td>
-                    <select>
-                        <option ng-repeat='item in items'/>{{item.name}}</option>
-                    </select>
+                <select ng-model='newBidItem.item' ng-selected='item.id' ng-options='item.name for item in items'/></select>
                 </td>
-                <td><input type='text' ng-model='newBidItem.item'/></td>
                 <td><input type='text' ng-model='newBidItem.notes'/></td>
                 <td><input type='quantity' ng-model='newBidItem.quantity'/></td>
                 <td><input type='source' ng-model='newBidItem.source'/></td>
                 <td><button ng-click="addBidItem()">Add Bid Item</button></td>
             </tfoot>
             <tr ng-repeat="bidItem in bidItems">
-                <td>{{bidItem.item}}</td>
+                <td>{{bidItem.item.name}}</td>
                 <td>{{bidItem.notes}}</td>
                 <td>{{bidItem.quantity}}</td>
                 <td>{{bidItem.source}}</td>
