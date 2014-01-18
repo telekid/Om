@@ -1,19 +1,15 @@
-app.controller('ItemController', ['$scope', '$log', 'listener', 'pouchWrapper', function($scope, $log, listener, pouchWrapper) {
-
-    $scope.$log = $log;
+app.controller('ItemController', ['$scope', 'listener', 'pouchWrapper', function($scope, listener, pouchWrapper) {
 
     $scope.items = [];
-    
     
     $scope.docType = 'item';
 
     $scope.addItem = function() {
         var newItem = {
             make: $scope.newItem.make,
-            model: $scope.newItem.model,
+            model: $scope.newItem.model
         };
     
-        //look at this later!
         var promise = pouchWrapper.add(newItem, $scope.docType);
         promise.then(function(res) {
             // Clear newitems
@@ -25,17 +21,18 @@ app.controller('ItemController', ['$scope', '$log', 'listener', 'pouchWrapper', 
     };
 
     $scope.remove = function(id) {
-        pouchWrapper.remove(id).then(function(res) {
+        var promise = pouchWrapper.remove(id);
+        promise.then(function(res) {
         }, function(reason) {
             console.log(reason);
         })
     };
 
-
     $scope.$on('newDoc', function(event, doc) {
-        console.log('new ' + doc.type);
 
         if (doc.type === $scope.docType) {
+            console.log('new ' + doc.type + ':');
+            console.dir(doc);
             $scope.items.push(doc);
         }
     });

@@ -1,6 +1,4 @@
-app.controller('BidItemController', ['$scope', '$log', 'listener', 'pouchWrapper', function($scope, $log, listener, pouchWrapper) {
-
-    $scope.$log = $log;
+app.controller('BidItemController', ['$scope', 'listener', 'pouchWrapper', function($scope, listener, pouchWrapper) {
 
     $scope.bidItems = [];
     
@@ -35,9 +33,10 @@ app.controller('BidItemController', ['$scope', '$log', 'listener', 'pouchWrapper
 
 
     $scope.$on('newDoc', function(event, doc) {
-        console.log('new ' + doc.type);
 
         if (doc.type === $scope.docType) {
+            console.log('new ' + doc.type + ':');
+            console.dir(doc);
             $scope.bidItems.push(doc);
         }
     });
