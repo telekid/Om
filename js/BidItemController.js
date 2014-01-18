@@ -1,4 +1,4 @@
-app.controller('BidItemController', ['$scope', 'listener', 'pouchWrapper', function($scope, listener, pouchWrapper) {
+app.controller('BidItemController', ['$scope', 'listener', 'pouchWrapper', 'itemsShare', function($scope, listener, pouchWrapper, itemsShare) {
 
     $scope.bidItems = [];
     
@@ -47,6 +47,13 @@ app.controller('BidItemController', ['$scope', 'listener', 'pouchWrapper', funct
                 $scope.bidItems.splice(i,1);
             }
         }
+    });
+    
+    $scope.$on('newItem', function(event) {
+        $scope.items = itemsShare.getItems();
+        
+        console.log('New Item!!!');
+        console.dir($scope.items);
     });
 
 }]);

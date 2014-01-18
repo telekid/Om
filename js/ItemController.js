@@ -1,4 +1,4 @@
-app.controller('ItemController', ['$scope', 'listener', 'pouchWrapper', function($scope, listener, pouchWrapper) {
+app.controller('ItemController', ['$scope', 'listener', 'pouchWrapper', 'itemsShare', function($scope, listener, pouchWrapper, itemsShare) {
 
     $scope.items = [];
     
@@ -31,9 +31,8 @@ app.controller('ItemController', ['$scope', 'listener', 'pouchWrapper', function
     $scope.$on('newDoc', function(event, doc) {
 
         if (doc.type === $scope.docType) {
-            console.log('new ' + doc.type + ':');
-            console.dir(doc);
             $scope.items.push(doc);
+            itemsShare.addItem({id: doc._id, name: doc.make + " " + doc.model});
         }
     });
 
@@ -43,6 +42,7 @@ app.controller('ItemController', ['$scope', 'listener', 'pouchWrapper', function
                 $scope.items.splice(i,1);
             }
         }
+        itemsShare.delItem(id);
     });
 
 }]);

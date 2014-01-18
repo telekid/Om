@@ -30,12 +30,18 @@
     <div id='bidItems' ng-app='MyTutorialApp' ng-controller='BidItemController'>
         <table>
             <thead>
+                <td>Item List</td>
                 <td>Item</td>
                 <td>Notes</td>
                 <td>Quantity</td>
                 <td>Source</td>
             </thead>
             <tfoot>
+                <td>
+                    <select>
+                        <option ng-repeat='item in items'/>{{item.name}}</option>
+                    </select>
+                </td>
                 <td><input type='text' ng-model='newBidItem.item'/></td>
                 <td><input type='text' ng-model='newBidItem.notes'/></td>
                 <td><input type='quantity' ng-model='newBidItem.quantity'/></td>
