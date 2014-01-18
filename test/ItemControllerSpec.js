@@ -20,11 +20,7 @@ describe('ItemController', function(){
     describe('newItem listener', function(){
         it('should create a new item in $scope.items', function(){
             
-            var action = "add";
-            var quantity = 15;
-            
-            scope.$broadcast('newItem', [action, quantity]);
-            expect(scope.items).toEqual([[action, quantity]]);
+
         });    
     });
 });

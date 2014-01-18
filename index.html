@@ -5,9 +5,10 @@
     <script src="js/pouchdb-nightly.js"></script>
     <script src="js/app.js" type="text/javascript"></script>
     <script src="js/ItemController.js" type="text/javascript"></script>
+    <script src="js/BidItemController.js" type="text/javascript"></script>
 </head>
-<body style="font-size: 2em;">
-    <div id="content" ng-app='MyTutorialApp' ng-controller='ItemController'>
+<body style="font-size: 2em;" ng-app='MyTutorialApp'>
+    <div id="content" ng-controller='ItemController'>
         <table>
             <thead>
                 <td>Make</td>
@@ -16,7 +17,7 @@
             <tfoot>
                     <td><input type='text' ng-model='newItem.make'/></td>
                     <td><input type='text' ng-model='newItem.model'/></td>
-                    <td><button ng-click="submit()">Add Item</button></td>
+                    <td><button ng-click="addItem()">Add Item</button></td>
             </tfoot>
 
             <tr ng-repeat="item in items">
@@ -25,6 +26,30 @@
                 <td><button ng-click="remove(item._id)">Delete</button></td>
             </tr>
         </table>
+    </div>
+    <div id='bidItems' ng-app='MyTutorialApp' ng-controller='BidItemController'>
+        <table>
+            <thead>
+                <td>Item</td>
+                <td>Notes</td>
+                <td>Quantity</td>
+                <td>Source</td>
+            </thead>
+            <tfoot>
+                <td><input type='text' ng-model='newBidItem.item'/></td>
+                <td><input type='text' ng-model='newBidItem.notes'/></td>
+                <td><input type='quantity' ng-model='newBidItem.quantity'/></td>
+                <td><input type='source' ng-model='newBidItem.source'/></td>
+                <td><button ng-click="addBidItem()">Add Bid Item</button></td>
+            </tfoot>
+            <tr ng-repeat="bidItem in bidItems">
+                <td>{{bidItem.item}}</td>
+                <td>{{bidItem.notes}}</td>
+                <td>{{bidItem.quantity}}</td>
+                <td>{{bidItem.source}}</td>
+                <td><button ng-click="remove(bidItem._id)">Delete</button></td>
+            </tr>
+        </table>        
     </div>
 </body>
 </html>

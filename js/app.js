@@ -12,10 +12,10 @@ app.factory('myPouch', [function() {
 app.factory('pouchWrapper', ['$q', '$rootScope', 'myPouch', function($q, $rootScope, myPouch) {
 
   return {
-    add: function(doc) {
+    add: function(doc, type) {
       var deferred = $q.defer();
 
-      myPouch.post(doc, function(err, res) {
+      var callback = function(err, res) {
         $rootScope.$apply(function() {
           if (err) {
             deferred.reject(err)
@@ -23,7 +23,10 @@ app.factory('pouchWrapper', ['$q', '$rootScope', 'myPouch', function($q, $rootSc
             deferred.resolve(res)
           }
         });
-      });
+      }
+      
+      doc.type = type;
+      myPouch.post(doc, callback);
       return deferred.promise;
     },
     remove: function(id) {
@@ -61,13 +64,13 @@ app.factory('listener', ['$rootScope', 'myPouch', function($rootScope, myPouch) 
           myPouch.get(change.id, function(err, doc) {
             $rootScope.$apply(function() {
               if (err) console.log(err);
-              $rootScope.$broadcast('newItem', doc);
+              $rootScope.$broadcast('newDoc', doc);
             })
           });
         })
       } else {
         $rootScope.$apply(function() {
-          $rootScope.$broadcast('delItem', change.id);
+          $rootScope.$broadcast('delDoc', change.id);
         });
       }
     }
