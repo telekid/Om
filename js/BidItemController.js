@@ -5,6 +5,13 @@ app.controller('BidItemController', ['$scope', 'listener', 'pouchWrapper', 'item
     $scope.docType = 'bidItem';
 
     $scope.addBidItem = function() {
+
+        // BidItems Validation:
+        // Default new item quantity to 1
+        if ($scope.newBidItem.quantity == undefined) {
+            $scope.newBidItem.quantity = 1;
+        };
+        
         var newBidItem = {
             item: $scope.newBidItem.item,
             notes: $scope.newBidItem.notes,
