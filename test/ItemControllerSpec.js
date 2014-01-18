@@ -4,7 +4,7 @@ describe('ItemController', function(){
     var scope;//we'll use this scope in our tests
  
     //mock Application to allow us to inject our own dependencies
-    beforeEach(angular.mock.module('MyTutorialApp'));
+    beforeEach(angular.mock.module('SoundFundamentals'));
     //mock the controller for the same reason and include $rootScope and $controller
     beforeEach(angular.mock.inject(function($rootScope, $controller){
         //create an empty scope
@@ -21,6 +21,6 @@ describe('ItemController', function(){
         it('should create a new item in $scope.items', function(){
             
 
-        });    
+        });
     });
 });

@@ -1,4 +1,4 @@
-var app = angular.module('MyTutorialApp',[]);
+var app = angular.module('SoundFundamentals',[]);
 
 app.factory('myPouch', [function() {
 
