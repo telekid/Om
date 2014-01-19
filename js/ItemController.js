@@ -1,16 +1,17 @@
 app.controller('ItemController', ['$scope', 'listener', 'pouchWrapper', 'itemsShare', function($scope, listener, pouchWrapper, itemsShare) {
 
     $scope.items = [];
+    $scope.newItem = {};
     
     $scope.docType = 'item';
 
     $scope.addItem = function() {
-        var newItem = {
+        var doc = {
             make: $scope.newItem.make,
             model: $scope.newItem.model
         };
     
-        var promise = pouchWrapper.add(newItem, $scope.docType);
+        var promise = pouchWrapper.add(doc, $scope.docType);
         promise.then(function(res) {
             // Clear newitems
             $scope.newItem.make = '';

@@ -12,6 +12,7 @@ describe('ItemController', function(){
 
         //declare the controller and inject our empty scope
         $controller('ItemController', {$scope: scope});
+        
     }));
 
     it('$scope.items should return an empty array', function(){
@@ -19,7 +20,15 @@ describe('ItemController', function(){
     });
     describe('newItem listener', function(){
         it('should create a new item in $scope.items', function(){
+            scope.newItem.make = 'DPA';
+            scope.newItem.model = '4061';
             
+            spyOn(scope, 'addItem');
+            scope.addItem();
+            
+            expect(scope.addItem).toHaveBeenCalled();
+            
+            console.log(scope.items);
 
         });
     });

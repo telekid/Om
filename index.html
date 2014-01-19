@@ -32,10 +32,10 @@
         <h1>Bid Items</h1>
         <table>
             <thead>
-                <td>Item List</td>
+                <td><a href="" ng-click="predicate = 'item.name'; reverse=false">Item List</a></td>
                 <td>Notes</td>
                 <td>Quantity</td>
-                <td>Source</td>
+                <td><a href="" ng-click="predicate = 'source'; reverse=false">Source</a></td>
             </thead>
             <tfoot>
                 <td>
@@ -46,7 +46,7 @@
                 <td><input type='source' ng-model='newBidItem.source'/></td>
                 <td><button ng-click="addBidItem()">Add Bid Item</button></td>
             </tfoot>
-            <tr ng-repeat="bidItem in bidItems">
+            <tr ng-repeat="bidItem in bidItems | orderBy:predicate:reverse">
                 <td>{{bidItem.item.name}}</td>
                 <td>{{bidItem.notes}}</td>
                 <td>{{bidItem.quantity}}</td>
