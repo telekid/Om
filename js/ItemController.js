@@ -8,14 +8,25 @@ app.controller('ItemController', ['$scope', 'listener', 'pouchWrapper', 'itemsSh
     $scope.addItem = function() {
         var doc = {
             make: $scope.newItem.make,
-            model: $scope.newItem.model
+            model: $scope.newItem.model,
+            bidNote: $scope.newItem.bidNote,
+            quantityChange: $scope.newItem.quantityChange,
+            source: $scope.newItem.source,
+            purpose: $scope.newItem.purpose
         };
     
         var promise = pouchWrapper.add(doc, $scope.docType);
         promise.then(function(res) {
             // Clear newitems
+            
             $scope.newItem.make = '';
             $scope.newItem.model = '';
+            $scope.newItem.bidNote = '';
+            $scope.newItem.quantityChange = '';
+            $scope.newItem.source = '';
+            $scope.newItem.purpose = '';
+            
+            
         }, function(reason) {
             console.log(reason);
         })

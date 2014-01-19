@@ -5,7 +5,6 @@
     <script src="js/pouchdb-nightly.js"></script>
     <script src="js/app.js" type="text/javascript"></script>
     <script src="js/ItemController.js" type="text/javascript"></script>
-    <script src="js/BidItemController.js" type="text/javascript"></script>
 </head>
 <body ng-app='SoundFundamentals'>
     <div id="items" ng-controller='ItemController'>
@@ -14,46 +13,32 @@
             <thead>
                 <td>Make</td>
                 <td>Model</td>
+                <td>Bid Note</td>
+                <td>Quantity Change</td>
+                <td>Source</td>
+                <td>Purpose</td>
             </thead>
             <tfoot>
                     <td><input type='text' ng-model='newItem.make'/></td>
                     <td><input type='text' ng-model='newItem.model'/></td>
+                    <td><input type='text' ng-model='newItem.bidNote'/></td>
+                    <td><input type='text' ng-model='newItem.quantityChange'/></td>
+                    <td><input type='text' ng-model='newItem.source'/></td>
+                    <td><input type='text' ng-model='newItem.purpose'/></td>
+                    
                     <td><button ng-click="addItem()">Add Item</button></td>
             </tfoot>
 
-            <tr ng-repeat="item in items">
+            <tr ng-repeat="item in items | filter:newItem:strict">
                 <td>{{item.make}}</td>
                 <td>{{item.model}}</td>
+                <td>{{item.bidNote}}</td>
+                <td>{{item.quantityChange}}</td>
+                <td>{{item.source}}</td>
+                <td>{{item.purpose}}</td>
                 <td><button ng-click="remove(item._id)">Delete</button></td>
             </tr>
         </table>
-    </div>
-    <div id='bidItems' ng-app='SoundFundamentals' ng-controller='BidItemController'>
-        <h1>Bid Items</h1>
-        <table>
-            <thead>
-                <td><a href="" ng-click="predicate = 'item.name'; reverse=false">Item List</a></td>
-                <td>Notes</td>
-                <td>Quantity</td>
-                <td><a href="" ng-click="predicate = 'source'; reverse=false">Source</a></td>
-            </thead>
-            <tfoot>
-                <td>
-                <select ng-model='newBidItem.item' ng-selected='item.id' ng-options='item.name for item in items'/></select>
-                </td>
-                <td><input type='text' ng-model='newBidItem.notes'/></td>
-                <td><input type='quantity' ng-model='newBidItem.quantity'/></td>
-                <td><input type='source' ng-model='newBidItem.source'/></td>
-                <td><button ng-click="addBidItem()">Add Bid Item</button></td>
-            </tfoot>
-            <tr ng-repeat="bidItem in bidItems | orderBy:predicate:reverse">
-                <td>{{bidItem.item.name}}</td>
-                <td>{{bidItem.notes}}</td>
-                <td>{{bidItem.quantity}}</td>
-                <td>{{bidItem.source}}</td>
-                <td><button ng-click="remove(bidItem._id)">Delete</button></td>
-            </tr>
-        </table>        
     </div>
 </body>
 </html>
