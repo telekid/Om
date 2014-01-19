@@ -3,6 +3,8 @@ app.controller('ItemController', ['$scope', 'listener', 'pouchWrapper', 'itemsSh
     $scope.items = [];
     $scope.newItem = {};
     
+    $scope.highlightedRow = null;
+    
     $scope.docType = 'item';
 
     $scope.addItem = function() {
@@ -57,7 +59,15 @@ app.controller('ItemController', ['$scope', 'listener', 'pouchWrapper', 'itemsSh
         itemsShare.delItem(id);
     });
 
-
+    $scope.keyWatcher = function(event) {
+        if (event.ctrlKey == true) {
+            if (event.keyCode >= 48 && event.keyCode <= 57) {
+                $scope.highlightedRow = event.keyCode - 48;
+                console.log($scope.highlightedRow);
+            }
+        }
+        
+    };
 //    $scope.comboFilter = function(item, )
 }]);
 
