@@ -57,5 +57,7 @@ app.controller('ItemController', ['$scope', 'listener', 'pouchWrapper', 'itemsSh
         itemsShare.delItem(id);
     });
 
+
+//    $scope.comboFilter = function(item, )
 }]);
 

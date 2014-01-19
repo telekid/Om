@@ -11,6 +11,7 @@
         <h1>Items</h1>
         <table>
             <thead>
+                <td></td>
                 <td>Make</td>
                 <td>Model</td>
                 <td>Bid Note</td>
@@ -19,6 +20,7 @@
                 <td>Purpose</td>
             </thead>
             <tfoot>
+                    <td></td>
                     <td><input type='text' ng-model='newItem.make'/></td>
                     <td><input type='text' ng-model='newItem.model'/></td>
                     <td><input type='text' ng-model='newItem.bidNote'/></td>
@@ -29,7 +31,8 @@
                     <td><button ng-click="addItem()">Add Item</button></td>
             </tfoot>
 
-            <tr ng-repeat="item in items | filter:newItem:strict">
+            <tr ng-repeat="item in items | filter:{make: newItem.make, model: newItem.model, bidNote: newItem.bidNote, source: newItem.source, purpose: newItem.purpose}:strict">
+                <td>&#8984;{{$index + 1}}</td>
                 <td>{{item.make}}</td>
                 <td>{{item.model}}</td>
                 <td>{{item.bidNote}}</td>
