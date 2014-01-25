@@ -120,15 +120,46 @@ app.filter('ctrlCode', function () {
 app.directive('dateDisplay', function () {
     return {
         restrict: 'A',
-        template: '{{formattedTimestamp}}',
+        template: '<div title="{{date}}">{{formattedTimestamp}}</div>',
         scope: {
             timestamp: '='
         },
         link: function (scope, elem, attrs) {
             var date = new Date(scope.timestamp);
-            scope.formattedTimestamp = date.getHours() + ":" + date.getMinutes();
-            scope.for
-            console.log(hours);
+            var currentDate = new Date(Date.now());
+            var delta = new Date(currentDate - date);
+            
+            if (delta < 60000) {
+                // Less than a minute ago
+                scope.formattedTimestamp = "just now";
+
+            } else if ((delta >= 60000) && (delta < 3600000)) {
+                // Less than an hour ago
+                if (delta.getMinutes() == 1) {
+                    scope.formattedTimestamp = "1 minute ago";
+                } else {
+                    scope.formattedTimestamp = (delta.getMinutes() + " minutes ago");
+                };
+            } else if ((delta >= 360000) && (delta < 82800000) && (date.getDay() == currentDate.getDay())) {
+                // Less than 24 hours ago
+                if (delta.getHours() == 1) {
+                    scope.formattedTimestamp = "1 hour ago";
+                }
+                else {
+                    scope.formattedTimestamp = (delta.getHours() + " hours ago");
+                };
+            };
+            
+            scope.date = date.toString();
+        
+            // Just Now
+            // [n] minutes ago
+            // [n] hours ago
+            // Yesterday
+            // [Day of week]
+            // Date
+        
+
         }
         
     }
