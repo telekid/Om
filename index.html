@@ -19,6 +19,7 @@
                 <thead>
                     <tr>
                         <th>&#8963;[n]</th>
+                        <th>Time</th>
                         <th>Make</th>
                         <th>Model</th>
                         <th>Bid Note</th>
@@ -28,6 +29,7 @@
                         <th></th>
                     </tr>
                     <tr>
+                        <td></td>
                         <td></td>
                         <td><input type='text' class="form-control" placeholder='Make' ng-model='newItem.make'/></td>
                         <td><input type='text' class="form-control" placeholder='Model' ng-model='newItem.model'/></td>
@@ -40,6 +42,7 @@
                 </thead>
                 <tr ng-class="{true: 'active'}[$index == highlightedRow - 1]" ng-repeat="item in items | filter:{make: newItem.make, model: newItem.model, bidNote: newItem.bidNote, source: newItem.source, purpose: newItem.purpose}:strict">
                     <td>{{$index | ctrlCode}}</td>
+                    <td><div date-display timestamp='item.timestamp'></div></td>
                     <td>{{item.make}}</td>
                     <td>{{item.model}}</td>
                     <td>{{item.bidNote}}</td>

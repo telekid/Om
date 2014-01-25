@@ -116,3 +116,20 @@ app.filter('ctrlCode', function () {
         }
     }
 });
+
+app.directive('dateDisplay', function () {
+    return {
+        restrict: 'A',
+        template: '{{formattedTimestamp}}',
+        scope: {
+            timestamp: '='
+        },
+        link: function (scope, elem, attrs) {
+            var date = new Date(scope.timestamp);
+            scope.formattedTimestamp = date.getHours() + ":" + date.getMinutes();
+            scope.for
+            console.log(hours);
+        }
+        
+    }
+});

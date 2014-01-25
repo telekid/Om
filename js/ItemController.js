@@ -19,6 +19,7 @@ app.controller('ItemController', ['$scope', 'listener', 'pouchWrapper', 'itemsSh
 
     $scope.addItem = function() {
         var doc = {
+            timestamp: Date.now(),
             make: $scope.newItem.make,
             model: $scope.newItem.model,
             bidNote: $scope.newItem.bidNote,
