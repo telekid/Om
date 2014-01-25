@@ -1,11 +1,17 @@
-var app = angular.module('SoundFundamentals',[]);
+var app = angular.module('Om',['ui.bootstrap']);
 
-app.factory('myPouch', [function() {
+app.factory('myPouch', ['POUCHDB_CONFIG', function(POUCHDB_CONFIG) {
+  
+  var db = new PouchDB('om'),
+      remote = POUCHDB_CONFIG.remote,
+      opts = {
+        continuous: true
+      };
 
-  var mydb = new PouchDB('ng-pouch');
-  PouchDB.replicate('ng-pouch', 'http://jakezerrer.iriscouch.com/cables', {continuous: true});
-  PouchDB.replicate('http://jakezerrer.iriscouch.com/cables', 'ng-pouch', {continuous: true});
-  return mydb;
+  db.replicate.to(remote, opts);
+  db.replicate.from(remote, opts);
+  
+  return db;
 
 }]);
 
@@ -103,3 +109,10 @@ app.factory('listener', ['$rootScope', 'myPouch', function($rootScope, myPouch) 
   })
 }]);
 
+app.filter('ctrlCode', function () {
+    return function(input) {
+        if ((input + 1) <= 9) {
+            return String.fromCharCode(8963) + " " + (input + 1);
+        }
+    }
+});

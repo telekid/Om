@@ -2,47 +2,54 @@
 <head>
     <title>Sound Fundamentals</title>
     <script src="js/angular.js" type="text/javascript"></script>
+    <script src="js/ui-bootstrap-tpls-0.10.0.js"></script>
     <script src="js/pouchdb-nightly.js"></script>
     <script src="js/app.js" type="text/javascript"></script>
+    <script src="js/config.js" type="text/javascript"></script>
     <script src="js/ItemController.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
-<body ng-app='SoundFundamentals'>
-    <div id="items" ng-controller='ItemController'>
-        <h1>Items</h1>
-        <table ng-keypress="keyWatcher($event)">
-            <thead>
-                <td></td>
-                <td>Make</td>
-                <td>Model</td>
-                <td>Bid Note</td>
-                <td>Quantity Change</td>
-                <td>Source</td>
-                <td>Purpose</td>
-            </thead>
-            <tfoot>
-                    <td></td>
-                    <td><input type='text' ng-model='newItem.make'/></td>
-                    <td><input type='text' ng-model='newItem.model'/></td>
-                    <td><input type='text' ng-model='newItem.bidNote'/></td>
-                    <td><input type='text' ng-model='newItem.quantityChange'/></td>
-                    <td><input type='text' ng-model='newItem.source'/></td>
-                    <td><input type='text' ng-model='newItem.purpose'/></td>
-                    
-                    <td><button ng-click="addItem()">Add Item</button></td>
-            </tfoot>
-
-            <tr ng-class="{true: 'highlighted'}[$index == highlightedRow - 1]" ng-repeat="item in items | filter:{make: newItem.make, model: newItem.model, bidNote: newItem.bidNote, source: newItem.source, purpose: newItem.purpose}:strict">
-                <td>&#8963;{{$index + 1}}</td>
-                <td>{{item.make}}</td>
-                <td>{{item.model}}</td>
-                <td>{{item.bidNote}}</td>
-                <td>{{item.quantityChange}}</td>
-                <td>{{item.source}}</td>
-                <td>{{item.purpose}}</td>
-                <td><button ng-click="remove(item._id)">Delete</button></td>
-            </tr>
-        </table>
+<body ng-app='Om' class='container'>
+    <div class='container'>
+        <div id="items" ng-controller='ItemController'>
+            <h1>Items</h1>
+            <table class='table' ng-keypress="keyWatcher($event)">
+                <thead>
+                    <tr>
+                        <th>&#8963;[n]</th>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Bid Note</th>
+                        <th>Quantity Change</th>
+                        <th>Source</th>
+                        <th>Purpose</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type='text' class="form-control" placeholder='Make' ng-model='newItem.make'/></td>
+                        <td><input type='text' class="form-control" placeholder='Model' ng-model='newItem.model'/></td>
+                        <td><input type='text' class="form-control" placeholder='Bid Note' ng-model='newItem.bidNote'/></td>
+                        <td><input type='text' class="form-control" placeholder='Quantity Change' ng-model='newItem.quantityChange'/></td>
+                        <td><input type='text' class="form-control" placeholder='Source' ng-model='newItem.source'/></td>
+                        <td><input type='text' class="form-control" placeholder='Purpose' ng-model='newItem.purpose'/></td>
+                        <td><button class='btn btn-default btn-sm' ng-click="addItem()">Add Item</button></td>
+                    </tr>
+                </thead>
+                <tr ng-class="{true: 'active'}[$index == highlightedRow - 1]" ng-repeat="item in items | filter:{make: newItem.make, model: newItem.model, bidNote: newItem.bidNote, source: newItem.source, purpose: newItem.purpose}:strict">
+                    <td>{{$index | ctrlCode}}</td>
+                    <td>{{item.make}}</td>
+                    <td>{{item.model}}</td>
+                    <td>{{item.bidNote}}</td>
+                    <td>{{item.quantityChange}}</td>
+                    <td>{{item.source}}</td>
+                    <td>{{item.purpose}}</td>
+                    <td><button class="btn btn-danger btn-xs" ng-click="remove(item._id)">Delete</button></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </body>
 </html>

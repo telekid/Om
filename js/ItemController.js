@@ -1,7 +1,17 @@
 app.controller('ItemController', ['$scope', 'listener', 'pouchWrapper', 'itemsShare', function($scope, listener, pouchWrapper, itemsShare) {
 
     $scope.items = [];
-    $scope.newItem = {};
+    
+    // Initialize all values in newItem to prevent items from disappearing from
+    // the list upon filtering
+    $scope.newItem = {
+        make: '',
+        model: '',
+        bidNote: '',
+        quantityChange: '',
+        source: '',
+        purpose: ''
+    };
     
     $scope.highlightedRow = null;
     
@@ -62,11 +72,16 @@ app.controller('ItemController', ['$scope', 'listener', 'pouchWrapper', 'itemsSh
     $scope.keyWatcher = function(event) {
         if (event.ctrlKey == true) {
             if (event.keyCode >= 48 && event.keyCode <= 57) {
-                $scope.highlightedRow = event.keyCode - 48;
                 console.log($scope.highlightedRow);
+                $scope.selectRow(event.keyCode - 48);
             }
         }
         
+    };
+    
+    
+    $scope.selectRow = function(row) {
+        $scope.highlightedRow = row;
     };
 //    $scope.comboFilter = function(item, )
 }]);
