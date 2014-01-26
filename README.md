@@ -23,3 +23,4 @@ Then, add the following to your hosts file:
 `127.0.0.1   local.dev`
 
 Point your browser to `local.dev:8000`
+

@@ -1,4 +1,4 @@
-var app = angular.module('Om',['ui.bootstrap']);
+var app = angular.module('Om',[]);
 
 app.factory('myPouch', ['POUCHDB_CONFIG', function(POUCHDB_CONFIG) {
   
