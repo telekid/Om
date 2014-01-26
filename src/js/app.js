@@ -164,3 +164,19 @@ app.directive('dateDisplay', function () {
         
     }
 });
+app.directive('enterKey', function() {
+    return {
+        restrict: 'A',
+        compile: function(element, attr) {
+            return function(scope, element, attr){
+                $('body').on("keypress", function(event) {
+                    if (event.which == 13) {                        
+                        event.preventDefault();
+                        $(element).click();
+                        $(document.activeElement).blur();
+                    }
+                }
+            )};
+        }
+    };
+});

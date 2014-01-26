@@ -20,7 +20,7 @@
                         <th><input type='text' class="form-control" placeholder='Quantity Change' ng-model='newItem.quantityChange'/></th>
                         <th><input type='text' class="form-control" placeholder='Source' ng-model='newItem.source'/></th>
                         <th><input type='text' class="form-control" placeholder='Purpose' ng-model='newItem.purpose'/></th>
-                        <th><button class='btn btn-default btn-sm' ng-click="addItem()">Add Item</button></th>
+                        <th><button class='btn btn-default btn-sm' ng-click="addItem()" enter-key>Add Item</button></th>
                     </tr>
                 </thead>
                 <tr ng-class="{true: 'active'}[$index == highlightedRow - 1]" ng-repeat="item in items | filter:{make: newItem.make, model: newItem.model, bidNote: newItem.bidNote, source: newItem.source, purpose: newItem.purpose}:strict">

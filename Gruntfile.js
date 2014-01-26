@@ -9,6 +9,7 @@ module.exports = function(grunt) {
           'dist/js/dependencies.min.js':
             [
             'src/js/lib/angular.js',
+            'src/js/lib/jquery.min.js',
             'src/js/lib/pouchdb-nightly.js',
             'src/js/lib/ui-bootstrap-tpls-0.10.0.js'
             ],
