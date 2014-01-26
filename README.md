@@ -5,5 +5,6 @@
 2. `cd Om`
 3. `npm install`
 4. `cd dist`
-5. `python -m SimpleHTTPServer`
-6. `Open localhost:8000`
+5. `grunt`
+6. `python -m SimpleHTTPServer`
+7. `Open localhost:8000`
