@@ -17,13 +17,11 @@ app.controller('InventoryPrintViewController', ['$scope', 'listener', 'pouchWrap
                 $scope.selectRow(event.keyCode - 48);
             }
         }
-        
     };
-    
-    
+
+
     $scope.selectRow = function(row) {
         $scope.highlightedRow = row;
     };
-//    $scope.comboFilter = function(item, )
 }]);
 
