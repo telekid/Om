@@ -22,6 +22,7 @@ module.exports = function(grunt) {
             'lib/angular/angular.js',
             'lib/jquery/jquery.js',
             'lib/pouchdb-bower/pouchdb-nightly.js',
+            'lib/angular-route/angular-route.js',
             
             // JS App
             'src/js/app.js',
@@ -41,7 +42,7 @@ module.exports = function(grunt) {
     
     watch: {
       scripts: {
-        files: ['src/js/**.js', 'src/index.html'],
+        files: ['src/js/**.js', 'src/partials/**.html', 'src/index.html'],
         tasks: ['concat', 'copy'],
       },
     },
@@ -59,6 +60,12 @@ module.exports = function(grunt) {
             cwd: 'src/css/',
             src: '**',
             dest: 'dist/css/',
+            expand: true
+          },
+          {
+            cwd: 'src/partials/',
+            src: '**',
+            dest: 'dist/partials/',
             expand: true
           }
         ]

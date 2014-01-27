@@ -1,40 +1,13 @@
 <!DOCTYPE html>
+<html lang="en" ng-app="Om">
 <head>
     <title>Sound Fundamentals</title>
     <script src="js/app.min.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="css/style.min.css" />
 </head>
-<body ng-app='Om' class='container'>
+<body class='container'>
     <div class='container'>
-        <div id="items" ng-controller='ItemController' ng-keypress="keyWatcher($event)">
-            <h1>Items</h1>
-            <table class='table'>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Age</th>
-                        <th><input type='text' class="form-control" placeholder='Make' ng-model='newItem.make'/></th>
-                        <th><input type='text' class="form-control" placeholder='Model' ng-model='newItem.model'/></th>
-                        <th><input type='text' class="form-control" placeholder='Bid Note' ng-model='newItem.bidNote'/></th>
-                        <th><input type='text' class="form-control" placeholder='Quantity Change' ng-model='newItem.quantityChange'/></th>
-                        <th><input type='text' class="form-control" placeholder='Source' ng-model='newItem.source'/></th>
-                        <th><input type='text' class="form-control" placeholder='Purpose' ng-model='newItem.purpose'/></th>
-                        <th><button class='btn btn-default btn-sm' ng-click="addItem()" enter-key>Add Item</button></th>
-                    </tr>
-                </thead>
-                <tr ng-class="{true: 'active'}[$index == highlightedRow - 1]" ng-repeat="item in items | filter:{make: newItem.make, model: newItem.model, bidNote: newItem.bidNote, source: newItem.source, purpose: newItem.purpose}:strict">
-                    <td>{{$index | ctrlCode}}</td>
-                    <td><div date-display timestamp='item.timestamp'></div></td>
-                    <td>{{item.make}}</td>
-                    <td>{{item.model}}</td>
-                    <td>{{item.bidNote}}</td>
-                    <td>{{item.quantityChange}}</td>
-                    <td>{{item.source}}</td>
-                    <td>{{item.purpose}}</td>
-                    <td><button class="btn btn-danger btn-xs" ng-click="remove(item._id)">Delete</button></td>
-                </tr>
-            </table>
-        </div>
+        <div ng-view></div>
     </div>
 </body>
 </html>

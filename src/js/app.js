@@ -1,4 +1,20 @@
-var app = angular.module('Om',[]);
+var app = angular.module('Om',['ngRoute']);
+
+app.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/actions', {
+        templateUrl: 'partials/actions.html',
+        controller: 'ItemController'
+      }).
+      when('/print', {
+        templateUrl: 'partials/print.html',
+        controller: 'PrintController'
+      }).
+      otherwise({
+        redirectTo: '/actions'
+      });
+  }]);
 
 app.factory('myPouch', ['POUCHDB_CONFIG', function(POUCHDB_CONFIG) {
   
