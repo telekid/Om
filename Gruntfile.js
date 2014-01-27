@@ -18,16 +18,16 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'dist/js/app.min.js': [
-            // JS Dependencies
+            //-------- JS Dependencies --------
             'lib/angular/angular.js',
             'lib/jquery/jquery.js',
             'lib/pouchdb-bower/pouchdb-nightly.js',
             'lib/angular-route/angular-route.js',
             
-            // JS App
+            //------------ JS App -------------
             'src/app.js',
             // Controllers
-            'src/controllers/ItemController.js',
+            'src/controllers/ActionsController.js',
             'src/controllers/PrintController.js',
             
             // Config

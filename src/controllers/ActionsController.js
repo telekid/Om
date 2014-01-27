@@ -1,4 +1,4 @@
-app.controller('ItemController', ['$scope', 'listener', 'pouchWrapper', 'itemsShare', function($scope, listener, pouchWrapper, itemsShare) {
+app.controller('ActionsController', ['$scope', 'listener', 'pouchWrapper', 'itemsShare', function($scope, listener, pouchWrapper, itemsShare) {
 
     $scope.items = [];
     

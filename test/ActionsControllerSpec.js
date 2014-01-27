@@ -1,6 +1,6 @@
 'use strict';
  
-describe('ItemController', function(){
+describe('ActionsController', function(){
     var scope;//we'll use this scope in our tests
  
     //mock Application to allow us to inject our own dependencies
@@ -11,7 +11,7 @@ describe('ItemController', function(){
         scope = $rootScope.$new();
 
         //declare the controller and inject our empty scope
-        $controller('ItemController', {$scope: scope});
+        $controller('ActionsController', {$scope: scope});
         
     }));
 

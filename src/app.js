@@ -5,7 +5,7 @@ app.config(['$routeProvider',
     $routeProvider.
       when('/actions', {
         templateUrl: 'partials/actions.html',
-        controller: 'ItemController'
+        controller: 'ActionsController'
       }).
       when('/print', {
         templateUrl: 'partials/print.html',
