@@ -25,10 +25,16 @@ module.exports = function(grunt) {
             'lib/angular-route/angular-route.js',
             
             //------------ JS App -------------
-            'src/app.js',
+            'src/services.js',
             // Controllers
             'src/controllers/ActionsController.js',
             'src/controllers/PrintController.js',
+            // Bits and pieces
+            'src/filters.js',
+            'src/directives.js',
+            'src/config.js',
+
+            'src/app.js',
             
             // Config
             'config.js'
@@ -46,7 +52,7 @@ module.exports = function(grunt) {
     
     watch: {
       scripts: {
-        files: ['src/js/**.js', 'src/partials/**.html', 'src/index.html'],
+        files: ['src/**/**.js', 'src/**/**.html'],
         tasks: ['concat', 'copy'],
       },
     },
