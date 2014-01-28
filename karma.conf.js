@@ -14,11 +14,11 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'js/angular.js',
+      'lib/angular/angular.js',
       'test/angular-mocks.js',
-      'js/pouchdb-nightly.js',
-      'js/app.js',
-      'js/*.js',
+      'lib/pouchdb-bower/pouchdb-nightly.js',
+      'src/app.js',
+      'src/*.js',
       
       'test/*Spec.js'
     ],

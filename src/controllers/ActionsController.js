@@ -1,7 +1,7 @@
 angular.module('Om.controllers', ['Om.services'])
     .controller('ActionsController', ['$scope', 'listener', 'pouchWrapper', 'itemsShare', function($scope, listener, pouchWrapper, itemsShare) {
 
-        $scope.items = [];
+        $scope.items = [];   
         
         // Initialize all values in newItem to prevent items from disappearing from
         // the list upon filtering
