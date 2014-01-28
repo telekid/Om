@@ -13,6 +13,7 @@ var app = angular.module('Om.services', [])
     return db;
 
   }])
+  
   .factory('pouchWrapper', ['$q', '$rootScope', 'myPouch', function($q, $rootScope, myPouch) {
 
     return {
@@ -56,6 +57,7 @@ var app = angular.module('Om.services', [])
       }
     }
   }])
+
   .factory('itemsShare', ['$rootScope', '$q', function($rootScope, $q) {
     var itemsShare = [];
     
@@ -73,15 +75,14 @@ var app = angular.module('Om.services', [])
         }
       }
     }
-    
     return {
       getItems: getItems,
       addItem: addItem,
       delItem: delItem
     };
   }])
-  .factory('listener', ['$rootScope', 'myPouch', function($rootScope, myPouch) {
 
+  .factory('listener', ['$rootScope', 'myPouch', function($rootScope, myPouch) {
     myPouch.changes({
       continuous: true,
       onChange: function(change) {

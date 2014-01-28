@@ -53,7 +53,7 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: ['src/**/**.js', 'src/**/**.html'],
-        tasks: ['concat', 'copy'],
+        tasks: ['concat', 'copy', 'notify:watch'],
       },
     },
     
@@ -80,7 +80,17 @@ module.exports = function(grunt) {
           }
         ]
       }
+    },
+
+    notify: {
+      watch: {
+        options: {
+//        title: 'Something Useful',
+          message: 'Ready for refresh',
+        }
+      }
     }
+
   });
 
     // Load tasks.
@@ -88,6 +98,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-bower-task');
+    grunt.loadNpmTasks('grunt-notify');
 
     // Default task(s).
     grunt.registerTask('default', ['bower', 'concat', 'copy']);
