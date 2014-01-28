@@ -66,7 +66,7 @@ var app = angular.module('Om.services', [])
     }
     var addItem = function(item) {
       itemsShare.push(item);
-      $rootScope.$broadcast('newItem');
+      $rootScope.$broadcast('newAction');
     }
     var delItem = function(id) {
       for (var i = 0; i < itemsShare.length; i++) {

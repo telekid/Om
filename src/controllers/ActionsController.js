@@ -1,11 +1,11 @@
 angular.module('Om.controllers', ['Om.services'])
     .controller('ActionsController', ['$scope', 'listener', 'pouchWrapper', 'itemsShare', function($scope, listener, pouchWrapper, itemsShare) {
 
-        $scope.items = [];   
+        $scope.actions = [];   
         
-        // Initialize all values in newItem to prevent items from disappearing from
+        // Initialize all values in newAction to prevent items from disappearing from
         // the list upon filtering
-        $scope.newItem = {
+        $scope.newAction = {
             make: '',
             model: '',
             bidNote: '',
@@ -16,29 +16,29 @@ angular.module('Om.controllers', ['Om.services'])
         
         $scope.highlightedRow = null;
         
-        $scope.docType = 'item';
+        $scope.docType = 'action';
 
-        $scope.addItem = function() {
+        $scope.addAction = function() {
             var doc = {
                 timestamp: Date.now(),
-                make: $scope.newItem.make,
-                model: $scope.newItem.model,
-                bidNote: $scope.newItem.bidNote,
-                quantityChange: $scope.newItem.quantityChange,
-                source: $scope.newItem.source,
-                purpose: $scope.newItem.purpose
+                make: $scope.newAction.make,
+                model: $scope.newAction.model,
+                bidNote: $scope.newAction.bidNote,
+                quantityChange: $scope.newAction.quantityChange,
+                source: $scope.newAction.source,
+                purpose: $scope.newAction.purpose
             };
         
             var promise = pouchWrapper.add(doc, $scope.docType);
             promise.then(function(res) {
-                // Clear newitems
+                // Clear newActions
                 
-                $scope.newItem.make = '';
-                $scope.newItem.model = '';
-                $scope.newItem.bidNote = '';
-                $scope.newItem.quantityChange = '';
-                $scope.newItem.source = '';
-                $scope.newItem.purpose = '';
+                $scope.newAction.make = '';
+                $scope.newAction.model = '';
+                $scope.newAction.bidNote = '';
+                $scope.newAction.quantityChange = '';
+                $scope.newAction.source = '';
+                $scope.newAction.purpose = '';
                 
                 
             }, function(reason) {
@@ -46,7 +46,7 @@ angular.module('Om.controllers', ['Om.services'])
             })
         };
 
-        $scope.remove = function(id) {
+        $scope.removeAction = function(id) {
             var promise = pouchWrapper.remove(id);
             promise.then(function(res) {
             }, function(reason) {
@@ -57,15 +57,15 @@ angular.module('Om.controllers', ['Om.services'])
         $scope.$on('newDoc', function(event, doc) {
 
             if (doc.type === $scope.docType) {
-                $scope.items.push(doc);
+                $scope.actions.push(doc);
                 itemsShare.addItem({id: doc._id, name: doc.make + " " + doc.model});
             }
         });
 
         $scope.$on('delDoc', function(event, id) {
-            for (var i = 0; i<$scope.items.length; i++) {
-                if ($scope.items[i]._id === id) {
-                    $scope.items.splice(i,1);
+            for (var i = 0; i<$scope.actions.length; i++) {
+                if ($scope.actions[i]._id === id) {
+                    $scope.actions.splice(i,1);
                 }
             }
             itemsShare.delItem(id);

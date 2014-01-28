@@ -1,30 +1,30 @@
 <div id="items" ng-keypress="keyWatcher($event)">
-    <h1>Items</h1>
+    <h1>Actions</h1>
     <a href="#/print">Print</a>
     <table class='table'>
         <thead>
             <tr>
                 <th>#</th>
                 <th>Age</th>
-                <th><input type='text' class="form-control" placeholder='Make' ng-model='newItem.make'/></th>
-                <th><input type='text' class="form-control" placeholder='Model' ng-model='newItem.model'/></th>
-                <th><input type='text' class="form-control" placeholder='Bid Note' ng-model='newItem.bidNote'/></th>
-                <th><input type='text' class="form-control" placeholder='Quantity Change' ng-model='newItem.quantityChange'/></th>
-                <th><input type='text' class="form-control" placeholder='Source' ng-model='newItem.source'/></th>
-                <th><input type='text' class="form-control" placeholder='Purpose' ng-model='newItem.purpose'/></th>
-                <th><button class='btn btn-default btn-sm' ng-click="addItem()" enter-key>Add Item</button></th>
+                <th><input type='text' class="form-control" placeholder='Make' ng-model='newAction.make'/></th>
+                <th><input type='text' class="form-control" placeholder='Model' ng-model='newAction.model'/></th>
+                <th><input type='text' class="form-control" placeholder='Bid Note' ng-model='newAction.bidNote'/></th>
+                <th><input type='text' class="form-control" placeholder='Quantity Change' ng-model='newAction.quantityChange'/></th>
+                <th><input type='text' class="form-control" placeholder='Source' ng-model='newAction.source'/></th>
+                <th><input type='text' class="form-control" placeholder='Purpose' ng-model='newAction.purpose'/></th>
+                <th><button class='btn btn-default btn-sm' ng-click="addAction()" enter-key>Add Action</button></th>
             </tr>
         </thead>
-        <tr ng-class="{true: 'active'}[$index == highlightedRow - 1]" ng-repeat="item in items | filter:{make: newItem.make, model: newItem.model, bidNote: newItem.bidNote, source: newItem.source, purpose: newItem.purpose}:strict">
+        <tr ng-class="{true: 'active'}[$index == highlightedRow - 1]" ng-repeat="action in actions | filter:{make: newAction.make, model: newAction.model, bidNote: newAction.bidNote, source: newAction.source, purpose: newAction.purpose}:strict">
             <td>{{$index | ctrlCode}}</td>
-            <td><div date-display timestamp='item.timestamp'></div></td>
-            <td>{{item.make}}</td>
-            <td>{{item.model}}</td>
-            <td>{{item.bidNote}}</td>
-            <td>{{item.quantityChange}}</td>
-            <td>{{item.source}}</td>
-            <td>{{item.purpose}}</td>
-            <td><button class="btn btn-danger btn-xs" ng-click="remove(item._id)">Delete</button></td>
+            <td><div date-display timestamp='action.timestamp'></div></td>
+            <td>{{action.make}}</td>
+            <td>{{action.model}}</td>
+            <td>{{action.bidNote}}</td>
+            <td>{{action.quantityChange}}</td>
+            <td>{{action.source}}</td>
+            <td>{{action.purpose}}</td>
+            <td><button class="btn btn-danger btn-xs" ng-click="removeAction(action._id)">Delete</button></td>
         </tr>
     </table>
 </div>
