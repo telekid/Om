@@ -7,6 +7,12 @@ describe('Directive: dateDisplay', function(){
       mockTime,
       evalTime;
 
+      var seconds = 1000;
+      var minutes = seconds * 60;
+      var hours = minutes * 60;
+      var days = hours * 24;
+
+
      beforeEach(function (){
     //load the module
     module('Om.directives');
@@ -15,6 +21,8 @@ describe('Directive: dateDisplay', function(){
     
     inject(function($compile, $rootScope) {
       scope = $rootScope.$new();
+
+
 
       mockTime = function(time) {
         return '<div date-display timestamp=' + time + '></div>';    
@@ -39,9 +47,8 @@ describe('Directive: dateDisplay', function(){
   });
 
     it('should display "moments ago" if timestamp is less than 60 seconds old.', function() {
-        //check to see if it's blank first.
 
-        var time = mockTime(Date.now());
+        var time = mockTime(Date.now() - (0.5 * minutes));
 
         evalTime(time);
 
@@ -51,7 +58,7 @@ describe('Directive: dateDisplay', function(){
 
     it('should display "[n] minutes ago" if the timestamp is 90 seconds old.', function() {
         // Subtract the time, don't add it!
-        var time = mockTime(Date.now() - 90000);
+        var time = mockTime(Date.now() - 1.5 * minutes);
 
         evalTime(time);
 
@@ -62,7 +69,7 @@ describe('Directive: dateDisplay', function(){
     describe('Minutes: 2m <= t <= 60m', function() {
 
        it('lower boundry', function() {
-           var time = mockTime(Date.now() - 150000);
+           var time = mockTime(Date.now() - 2.5 * minutes);
 
            evalTime(time);
 
@@ -70,7 +77,7 @@ describe('Directive: dateDisplay', function(){
        });
 
        it('upper boundry', function() {
-           var time = mockTime(Date.now() - 3570000);
+           var time = mockTime(Date.now() - 59.5 * minutes);
 
            evalTime(time);
 
@@ -81,7 +88,22 @@ describe('Directive: dateDisplay', function(){
     });
 
     describe('Hour: 1h1m <= t <= 1h59m', function() {
-        
+      it('lower boundry', function() {
+        var time = mockTime(Date.now() - (1 * hours + 1 * minutes));
+
+        evalTime(time);
+
+        expect(elem.text()).toBe('1 hour ago');
+      });
+
+      it('upper boundry', function() {
+        var time = mockTime(Date.now() - (1 * hours + 59 * minutes));
+
+        evalTime(time);
+
+        expect(elem.text()).toBe('1 hour ago');
+
+      });
     });
 
     describe('Hours until yesterday: 2h1m <= t <= 2am', function() {

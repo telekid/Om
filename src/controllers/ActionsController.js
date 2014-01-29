@@ -1,5 +1,5 @@
 angular.module('Om.controllers', ['Om.services'])
-    .controller('ActionsController', ['$scope', 'listener', 'pouchWrapper', 'itemsShare', function($scope, listener, pouchWrapper, itemsShare) {
+    .controller('ActionsController', ['$scope', 'listener', 'pouchWrapper', function($scope, listener, pouchWrapper, itemsShare) {
 
         $scope.actions = [];   
         
@@ -58,7 +58,6 @@ angular.module('Om.controllers', ['Om.services'])
 
             if (doc.type === $scope.docType) {
                 $scope.actions.push(doc);
-                itemsShare.addItem({id: doc._id, name: doc.make + " " + doc.model});
             }
         });
 
@@ -68,7 +67,6 @@ angular.module('Om.controllers', ['Om.services'])
                     $scope.actions.splice(i,1);
                 }
             }
-            itemsShare.delItem(id);
         });
 
         $scope.keyWatcher = function(event) {
@@ -80,7 +78,6 @@ angular.module('Om.controllers', ['Om.services'])
             }
             
         };
-        
         
         $scope.selectRow = function(row) {
             $scope.highlightedRow = row;

@@ -58,30 +58,6 @@ var app = angular.module('Om.services', [])
     }
   }])
 
-  .factory('itemsShare', ['$rootScope', '$q', function($rootScope, $q) {
-    var itemsShare = [];
-    
-    var getItems = function() {
-      return itemsShare;
-    }
-    var addItem = function(item) {
-      itemsShare.push(item);
-      $rootScope.$broadcast('newAction');
-    }
-    var delItem = function(id) {
-      for (var i = 0; i < itemsShare.length; i++) {
-        if (itemsShare[i].id === id) {
-          itemsShare.splice(i,1);
-        }
-      }
-    }
-    return {
-      getItems: getItems,
-      addItem: addItem,
-      delItem: delItem
-    };
-  }])
-
   .factory('listener', ['$rootScope', 'myPouch', function($rootScope, myPouch) {
     myPouch.changes({
       continuous: true,

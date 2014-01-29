@@ -11,19 +11,25 @@ angular.module('Om.directives', [])
                 var currentDate = new Date(Date.now());
                 var delta = new Date(currentDate - date);
                 
-                if (delta < 60000) {
+                var seconds = 1000;
+                var minutes = seconds * 60;
+                var hours = minutes * 60;
+                var days = hours * 24;
+
+                if (delta < (1 * minutes)) {
                     // Less than a minute ago
                     scope.formattedTimestamp = "just now";
 
-                } else if ((delta >= 60000) && (delta < 3600000)) {
+                } else if ((delta >= (1 * minutes)) && (delta < 1 * hours)) {
                     // Less than an hour ago
                     if (delta.getMinutes() == 1) {
                         scope.formattedTimestamp = "1 minute ago";
                     } else {
                         scope.formattedTimestamp = (delta.getMinutes() + " minutes ago");
                     };
-                } else if ((delta >= 360000) && (delta < 82800000) && (date.getDay() == currentDate.getDay())) {
+                } else if ((delta >= (1 * hours)) && (delta < (1 * days)) && (date.getDay() == currentDate.getDay())) {
                     // Less than 24 hours ago
+
                     if (delta.getHours() == 1) {
                         scope.formattedTimestamp = "1 hour ago";
                     }
