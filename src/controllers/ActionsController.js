@@ -1,4 +1,4 @@
-angular.module('Om.controllers', ['Om.services'])
+angular.module('Om.controllers')
     .controller('ActionsController', ['$scope', 'listener', 'pouchWrapper', function($scope, listener, pouchWrapper, itemsShare) {
 
         $scope.actions = [];   
@@ -69,16 +69,10 @@ angular.module('Om.controllers', ['Om.services'])
             }
         });
 
-        $scope.keyWatcher = function(event) {
-            if (event.ctrlKey == true) {
-                if (event.keyCode >= 48 && event.keyCode <= 57) {
-                    console.log($scope.highlightedRow);
-                    $scope.selectRow(event.keyCode - 48);
-                }
-            }
-            
-        };
-        
+        $scope.$on('selectRow', function(event, row) {
+            $scope.highlightedRow = row;
+        });
+
         $scope.selectRow = function(row) {
             $scope.highlightedRow = row;
         };

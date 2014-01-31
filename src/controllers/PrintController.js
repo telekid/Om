@@ -1,4 +1,5 @@
-app.controller('InventoryPrintViewController', ['$scope', 'listener', 'pouchWrapper', 'itemsShare', function($scope, listener, pouchWrapper, itemsShare) {
+angular.module('Om.controllers')
+    .controller('PrintController', ['$scope', 'listener', 'pouchWrapper', function($scope, listener, pouchWrapper) {
 
-}]);
+    }]);
 

@@ -27,12 +27,12 @@ module.exports = function(grunt) {
             //------------ JS App -------------
             'src/services.js',
             // Controllers
+            'src/controllers/AppController.js',
             'src/controllers/ActionsController.js',
             'src/controllers/PrintController.js',
             // Bits and pieces
             'src/filters.js',
             'src/directives.js',
-            'src/config.js',
 
             'src/app.js',
             

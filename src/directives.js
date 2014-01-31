@@ -1,4 +1,5 @@
 angular.module('Om.directives', [])
+
     .directive('dateDisplay', function () {
         return {
             restrict: 'A',
