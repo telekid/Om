@@ -54,6 +54,23 @@ angular.module('Om.controllers')
             })
         };
 
+        $scope.getAll = function() {
+            var promise = pouchWrapper.getAll();
+            promise.then(function(res) {
+
+                for (var i = 0; i<res.rows.length; i++) {
+                    
+                    $scope.actions.push(res.rows[i].doc);
+
+                }
+                console.log($scope.actions);
+            }, function(reason) {
+                console.log(reason);
+            })
+        }
+
+        $scope.getAll();
+
         $scope.$on('newDoc', function(event, doc) {
 
             if (doc.type === $scope.docType) {

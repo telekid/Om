@@ -34,6 +34,7 @@ var app = angular.module('Om.services', [])
         myPouch.post(doc, callback);
         return deferred.promise;
       },
+
       remove: function(id) {
         var deferred = $q.defer();
         myPouch.get(id, function(err, doc) {
@@ -54,7 +55,25 @@ var app = angular.module('Om.services', [])
           });
         });
         return deferred.promise;
+      },
+
+      getAll: function() {
+        var deferred = $q.defer();
+
+        myPouch.allDocs({include_docs: true}, function(err, documents) {
+          $rootScope.$apply(function() {
+            if (err) {
+              deferred.reject(err);
+            } else {
+              deferred.resolve(documents);
+            }
+          });
+        });
+
+        return deferred.promise;
+
       }
+
     }
   }])
 
