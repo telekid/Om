@@ -1,5 +1,5 @@
 var app = angular.module('Om.services', [])
-  .factory('myPouch', ['POUCHDB_CONFIG', function(POUCHDB_CONFIG) {
+  .factory('pouchConnection', ['POUCHDB_CONFIG', function(POUCHDB_CONFIG) {
     
     var db = new PouchDB('om'),
         remote = POUCHDB_CONFIG.remote,
@@ -14,7 +14,7 @@ var app = angular.module('Om.services', [])
 
   }])
   
-  .factory('pouchWrapper', ['$q', '$rootScope', 'myPouch', function($q, $rootScope, myPouch) {
+  .factory('database', ['$q', '$rootScope', 'pouchConnection', function($q, $rootScope, pouchConnection) {
 
     return {
       add: function(doc, type) {
@@ -31,17 +31,17 @@ var app = angular.module('Om.services', [])
         }
         
         doc.type = type;
-        myPouch.post(doc, callback);
+        pouchConnection.post(doc, callback);
         return deferred.promise;
       },
       remove: function(id) {
         var deferred = $q.defer();
-        myPouch.get(id, function(err, doc) {
+        pouchConnection.get(id, function(err, doc) {
           $rootScope.$apply(function() {
             if (err) {
               deferred.reject(err);
             } else {
-              myPouch.remove(doc, function(err, res) {
+              pouchConnection.remove(doc, function(err, res) {
                 $rootScope.$apply(function() {
                   if (err) {
                     deferred.reject(err)
@@ -58,13 +58,13 @@ var app = angular.module('Om.services', [])
     }
   }])
 
-  .factory('listener', ['$rootScope', 'myPouch', function($rootScope, myPouch) {
-    myPouch.changes({
+  .factory('pouchListener', ['$rootScope', 'pouchConnection', function($rootScope, pouchConnection) {
+    pouchConnection.changes({
       continuous: true,
       onChange: function(change) {
         if (!change.deleted) {
           $rootScope.$apply(function() {
-            myPouch.get(change.id, function(err, doc) {
+            pouchConnection.get(change.id, function(err, doc) {
               $rootScope.$apply(function() {
                 if (err) console.log(err);
                 $rootScope.$broadcast('newDoc', doc);

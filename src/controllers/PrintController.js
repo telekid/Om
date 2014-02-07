@@ -1,5 +1,5 @@
 angular.module('Om.controllers')
-    .controller('PrintController', ['$scope', 'listener', 'pouchWrapper', function($scope, listener, pouchWrapper) {
+    .controller('PrintController', ['$scope', 'pouchListener', 'database', function($scope, pouchListener, database) {
 
     }]);
 

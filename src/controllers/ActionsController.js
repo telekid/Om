@@ -1,5 +1,5 @@
 angular.module('Om.controllers')
-    .controller('ActionsController', ['$scope', 'listener', 'pouchWrapper', function($scope, listener, pouchWrapper, itemsShare) {
+    .controller('ActionsController', ['$scope', 'pouchListener', 'database', function($scope, pouchListener, database) {
 
         $scope.actions = [];   
         
@@ -29,7 +29,7 @@ angular.module('Om.controllers')
                 purpose: $scope.newAction.purpose
             };
         
-            var promise = pouchWrapper.add(doc, $scope.docType);
+            var promise = database.add(doc, $scope.docType);
             promise.then(function(res) {
                 // Clear newActions
                 
@@ -47,7 +47,7 @@ angular.module('Om.controllers')
         };
 
         $scope.removeAction = function(id) {
-            var promise = pouchWrapper.remove(id);
+            var promise = database.remove(id);
             promise.then(function(res) {
             }, function(reason) {
                 console.log(reason);
