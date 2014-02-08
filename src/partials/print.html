@@ -1,2 +1,26 @@
-<h1>Print</h1>
-<a href="#/actions">Actions</a>
+<div id="items" ng-controller="PrintController">
+    <h1>Print</h1>
+    <a href="#/actions">Actions</a>
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Model</th>
+                <th>Bid</th>
+                <th>Quantity</th>
+                <th>Source</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+        <tr ng-repeat="action in actions()">
+            <td>{{action.category}}</td>
+            <td>{{action.make}}</td>
+            <td>{{action.model}}</td>
+            <td>{{action.bidNote}}</td>
+            <td>{{action.quantityChange}}</td>
+            <td>{{action.source}}</td>
+            <td>{{action.purpose}}</td>
+        </tr>
+    </table>
+</div>
