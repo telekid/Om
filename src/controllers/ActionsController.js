@@ -31,7 +31,13 @@ angular.module('Om.controllers')
                 source: $scope.newAction.source,
                 purpose: $scope.newAction.purpose
             };
-        
+            
+            // Validation
+            if (doc.quantityChange === "") {
+                doc.quantityChange = 1;
+            }
+
+
             var promise = database.add(doc, $scope.docType);
             promise.then(function(res) {
                 // Clear newActions
