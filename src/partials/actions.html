@@ -6,6 +6,7 @@
             <tr>
                 <th>#</th>
                 <th>Age</th>
+                <th><input type='text' class="form-control" placeholder='Category' ng-model='newAction.category'/></th>
                 <th><input type='text' class="form-control" placeholder='Make' ng-model='newAction.make'/></th>
                 <th><input type='text' class="form-control" placeholder='Model' ng-model='newAction.model'/></th>
                 <th><input type='text' class="form-control" placeholder='Bid Note' ng-model='newAction.bidNote'/></th>
@@ -15,9 +16,10 @@
                 <th><button class='btn btn-default btn-sm' ng-click="addAction()" enter-key>Add Action</button></th>
             </tr>
         </thead>
-        <tr ng-class="{true: 'active'}[$index == highlightedRow - 1]" ng-repeat="action in actions() | filter:{make: newAction.make, model: newAction.model, bidNote: newAction.bidNote, source: newAction.source, purpose: newAction.purpose}:strict">
+        <tr ng-class="{true: 'active'}[$index == highlightedRow - 1]" ng-repeat="action in actions() | filter:{category: newAction.category, make: newAction.make, model: newAction.model, bidNote: newAction.bidNote, source: newAction.source, purpose: newAction.purpose}:strict">
             <td>{{$index | ctrlCode}}</td>
             <td><div date-display timestamp='action.timestamp'></div></td>
+            <td>{{action.category}}</td>
             <td>{{action.make}}</td>
             <td>{{action.model}}</td>
             <td>{{action.bidNote}}</td>

@@ -4,6 +4,7 @@ angular.module('Om.controllers')
         // Initialize all values in newAction to prevent items from disappearing from
         // the list upon filtering
         $scope.newAction = {
+            category: '',
             make: '',
             model: '',
             bidNote: '',
@@ -24,6 +25,7 @@ angular.module('Om.controllers')
         $scope.addAction = function() {
             var doc = {
                 timestamp: Date.now(),
+                category: $scope.newAction.category,
                 make: $scope.newAction.make,
                 model: $scope.newAction.model,
                 bidNote: $scope.newAction.bidNote,
@@ -42,6 +44,7 @@ angular.module('Om.controllers')
             promise.then(function(res) {
                 // Clear newActions
                 
+                $scope.newAction.category = '';
                 $scope.newAction.make = '';
                 $scope.newAction.model = '';
                 $scope.newAction.bidNote = '';
