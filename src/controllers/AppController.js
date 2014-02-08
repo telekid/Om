@@ -1,5 +1,5 @@
 angular.module('Om.controllers', ['Om.services'])
-    .controller('AppController', ['$rootScope', '$scope', 'pouchListener', function($rootScope, $scope, pouchListener) {
+    .controller('AppController', ['$rootScope', '$scope', function($rootScope, $scope) {
 
         $scope.keyWatcher = function(event) {
             if (event.ctrlKey == true) {

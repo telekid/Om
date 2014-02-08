@@ -1,8 +1,6 @@
 angular.module('Om.controllers')
-    .controller('ActionsController', ['$scope', 'pouchListener', 'database', function($scope, pouchListener, database) {
+    .controller('ActionsController', ['$scope', 'database', function($scope, database) {
 
-        $scope.actions = [];   
-        
         // Initialize all values in newAction to prevent items from disappearing from
         // the list upon filtering
         $scope.newAction = {
@@ -17,6 +15,11 @@ angular.module('Om.controllers')
         $scope.highlightedRow = null;
         
         $scope.docType = 'action';
+
+        $scope.actions = function() {
+            // Filtering by action type should happen here
+            return database.container();
+        }
 
         $scope.addAction = function() {
             var doc = {
@@ -53,21 +56,6 @@ angular.module('Om.controllers')
                 console.log(reason);
             })
         };
-
-        $scope.$on('newDoc', function(event, doc) {
-
-            if (doc.type === $scope.docType) {
-                $scope.actions.push(doc);
-            }
-        });
-
-        $scope.$on('delDoc', function(event, id) {
-            for (var i = 0; i<$scope.actions.length; i++) {
-                if ($scope.actions[i]._id === id) {
-                    $scope.actions.splice(i,1);
-                }
-            }
-        });
 
         $scope.$on('selectRow', function(event, row) {
             $scope.highlightedRow = row;
