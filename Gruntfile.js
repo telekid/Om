@@ -21,8 +21,10 @@ module.exports = function(grunt) {
             //-------- JS Dependencies --------
             'lib/angular/angular.js',
             'lib/jquery/jquery.js',
+            'lib/underscore/underscore.js',
             'lib/pouchdb-bower/pouchdb-nightly.js',
             'lib/angular-route/angular-route.js',
+            'lib/momentjs/moment.js',
             
             //------------ JS App -------------
             'src/services.js',
